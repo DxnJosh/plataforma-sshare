@@ -1,4 +1,19 @@
 export default function Layout({ children, onNav }) {
+  const token = localStorage.getItem("token");
+  let email = "";
+
+  if (token) {
+    try {
+      const payload = JSON.parse(atob(token.split(".")[1]));
+      email = payload.sub;
+    } catch {}
+  }
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    window.location.reload();
+  };
+
   return (
     <div style={styles.app}>
       <aside style={styles.sidebar}>
@@ -8,9 +23,16 @@ export default function Layout({ children, onNav }) {
         <button style={styles.btn} onClick={() => onNav("admin")}>🛠 Admin</button>
       </aside>
 
-      <main style={styles.main}>
-        {children}
-      </main>
+      <div style={styles.content}>
+        <header style={styles.header}>
+          <div>👤 {email}</div>
+          <button onClick={logout} style={styles.logout}>Cerrar sesión</button>
+        </header>
+
+        <main style={styles.main}>
+          {children}
+        </main>
+      </div>
     </div>
   );
 }
@@ -34,6 +56,24 @@ const styles = {
     textAlign: "left",
     cursor: "pointer",
     fontSize: 14
+  },
+  content: { flex: 1, display: "flex", flexDirection: "column" },
+  header: {
+    height: 50,
+    background: "#ffffff",
+    borderBottom: "1px solid #ddd",
+    padding: "0 20px",
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center"
+  },
+  logout: {
+    background: "#ef4444",
+    color: "white",
+    border: "none",
+    padding: "6px 12px",
+    borderRadius: 6,
+    cursor: "pointer"
   },
   main: {
     flex: 1,
