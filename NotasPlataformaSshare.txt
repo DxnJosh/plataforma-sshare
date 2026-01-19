@@ -1,0 +1,115 @@
+Desarrolla una plataforma para la gestión de tickets de soporte técnico, accesible desde web, que permita mejorar la eficiencia en la atención de incidencias, reducir tiempos de resolución y ofrecer un modelo de negocio escalable bajo SaaS. La plataforma permitirá a usuarios finales generar tickets de soporte, dar seguimiento a sus solicitudes y recibir notificaciones del estado. El personal técnico podrá gestionar, asignar, resolver y cerrar los tickets desde cualquier dispositivo. Los usuarios que usará el sistema son: Usuario final (Cliente interno/externo) quien Registra incidencias o solicitudes de soporte, Consulta el estado de sus tickets y Recibe notificaciones de actualizaciones. Técnico/Agente de soporte quien Visualiza tickets asignados, Actualiza estatus, agrega comentarios y adjuntos, Marca como resuelto/cerrado.  Administrador quien Crea y gestiona usuarios, Asigna roles (cliente, agente, administrador), Supervisa métricas, reportes y cumplimiento de SLA, Configura categorías, prioridades y tiempos de respuesta. Dame los pasos ademas de scripts o lo que sea necesario para cumplir con este proyecto llamado "Plataforma Sshare". Vamos por partes, explícame como será la estructura del proyecto, que scripts o demás archivos debo crear. Para facilidad de este proyecto se usará GitHub. 
+
+Backend
+
+Python + Flask (ligero, profesional, ya lo dominas)
+
+Arquitectura MVC
+
+API REST (para futuro frontend móvil)
+
+Frontend
+
+HTML5 + CSS3 + JS
+
+Bootstrap (rápido y estándar)
+
+Más adelante puede migrarse a React/Vue (opcional)
+
+Base de datos
+
+MySQL (muy usado en empresas)
+
+SQLAlchemy (ORM)
+
+Autenticación
+
+Sesiones + roles
+
+Hash de contraseñas
+
+Control de versiones
+
+Git + GitHub
+
+Repositorio único (monorepo)
+------------------------------------------------------------------------
+Estructura general del proyecto
+------------------------------------------------------------------------
+
+plataforma-sshare/
+│
+├── backend/
+│   ├── app/
+│   │   ├── __init__.py
+│   │   ├── config.py
+│   │   │
+│   │   ├── models/
+│   │   │   ├── __init__.py
+│   │   │   ├── user.py
+│   │   │   ├── ticket.py
+│   │   │   ├── comment.py
+│   │   │   └── attachment.py
+│   │   │
+│   │   ├── routes/
+│   │   │   ├── __init__.py
+│   │   │   ├── auth_routes.py
+│   │   │   ├── ticket_routes.py
+│   │   │   ├── admin_routes.py
+│   │   │   └── user_routes.py
+│   │   │
+│   │   ├── services/
+│   │   │   ├── __init__.py
+│   │   │   ├── auth_service.py
+│   │   │   ├── ticket_service.py
+│   │   │   └── notification_service.py
+│   │   │
+│   │   ├── utils/
+│   │   │   ├── __init__.py
+│   │   │   ├── decorators.py
+│   │   │   └── helpers.py
+│   │   │
+│   │   └── extensions.py
+│   │
+│   ├── migrations/
+│   ├── run.py
+│   └── requirements.txt
+│
+├── frontend/
+│   ├── templates/
+│   │   ├── auth/
+│   │   │   ├── login.html
+│   │   │   └── register.html
+│   │   │
+│   │   ├── tickets/
+│   │   │   ├── create_ticket.html
+│   │   │   ├── list_tickets.html
+│   │   │   └── ticket_detail.html
+│   │   │
+│   │   ├── admin/
+│   │   │   ├── dashboard.html
+│   │   │   ├── users.html
+│   │   │   └── reports.html
+│   │   │
+│   │   └── base.html
+│   │
+│   ├── static/
+│   │   ├── css/
+│   │   │   └── main.css
+│   │   ├── js/
+│   │   │   └── main.js
+│   │   └── uploads/
+│   │
+│   └── README.md
+│
+├── database/
+│   └── sshare.sql
+│
+├── docs/
+│   ├── arquitectura.md
+│   ├── roles_y_permisos.md
+│   └── api_endpoints.md
+│
+├── .gitignore
+├── README.md
+└── docker-compose.yml (opcional más adelante)
